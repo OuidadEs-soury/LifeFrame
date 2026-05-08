@@ -1,40 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>LifeFrame - Your Memory Museum</title>
+  <meta charset="UTF-8">
+  <title>LifeFrame</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <!-- Background layer -->
-  <div class="background"></div>
+  <!-- Ambient background -->
+  <div class="bg"></div>
 
-  <!-- Main container -->
-  <header>
+  <!-- Header / Intro -->
+  <header class="hero">
     <h1>🧠 LifeFrame</h1>
-    <p>Your memories, turned into a living museum</p>
-    <button onclick="startExperience()">Enter Museum</button>
+    <p>Your memories turned into a living museum</p>
+    <button onclick="enterMuseum()">Enter Experience</button>
   </header>
 
-  <!-- Timeline section -->
-  <section id="timeline">
+  <!-- Upload Section -->
+  <section class="upload-section">
+    <h2>Add a Memory</h2>
 
-    <div class="memory-card">
-      <img src="assets/images/sample1.jpg" />
-      <h3>First Day</h3>
-      <p>A moment that changed everything...</p>
-    </div>
+    <input type="text" id="title" placeholder="Memory title">
+    <textarea id="description" placeholder="Write your memory..."></textarea>
+    <input type="text" id="image" placeholder="Image URL">
 
-    <div class="memory-card">
-      <img src="assets/images/sample2.jpg" />
-      <h3>Unexpected Laugh</h3>
-      <p>One of those memories you replay in your head.</p>
-    </div>
-
+    <button onclick="addMemory()">Save Memory</button>
   </section>
+
+  <!-- Timeline -->
+  <section id="timeline"></section>
 
   <script src="app.js"></script>
 </body>
