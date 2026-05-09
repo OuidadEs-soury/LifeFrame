@@ -8,30 +8,37 @@
 
 <body>
 
-  <!-- Ambient background -->
   <div class="bg"></div>
 
-  <!-- Header / Intro -->
   <header class="hero">
     <h1>🧠 LifeFrame</h1>
     <p>Your memories turned into a living museum</p>
     <button onclick="enterMuseum()">Enter Experience</button>
   </header>
 
-  <!-- Upload Section -->
   <section class="upload-section">
+
     <h2>Add a Memory</h2>
 
     <input type="text" id="title" placeholder="Memory title">
-    <textarea id="description" placeholder="Write your memory..."></textarea>
-    <input type="text" id="image" placeholder="Image URL">
 
-    <button onclick="addMemory()">Save Memory</button>
+    <textarea
+      id="description"
+      placeholder="Write your memory..."
+    ></textarea>
+
+    <!-- NEW IMAGE FILE INPUT -->
+    <input type="file" id="imageFile">
+
+    <button onclick="addMemory()">
+      Save Memory
+    </button>
+
   </section>
 
-  <!-- Timeline -->
   <section id="timeline"></section>
 
   <script src="app.js"></script>
+
 </body>
 </html>
