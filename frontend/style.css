@@ -1,327 +1,72 @@
 body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #050816;
-  color: white;
-  overflow-x: hidden;
+  background: rgba(255,255,255,0.1);
 }
-
-
-.bg {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  background:
-    radial-gradient(circle at top,
-      #1f2d52,
-      #050816);
-  z-index: -3;
-}
-
-
-.particles {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  z-index: -2;
-  overflow: hidden;
-}
-
-.particles::before,
-.particles::after {
-  content: "";
-  position: absolute;
-  width: 200%;
-  height: 200%;
-  background-image:
-    radial-gradient(white 1px, transparent 1px);
-
-  background-size: 50px 50px;
-
-  opacity: 0.1;
-
-  animation: moveParticles 60s linear infinite;
-}
-
-@keyframes moveParticles {
-
-  from {
-    transform: translateY(0);
-  }
-
-  to {
-    transform: translateY(-500px);
-  }
-}
-
-
-.hero {
-  text-align: center;
-  padding: 100px 20px;
-}
-
-.hero h1 {
-  font-size: 70px;
-  margin-bottom: 10px;
-}
-
-.hero p {
-  color: #cccccc;
-  font-size: 20px;
-}
-
-.hero button {
-  margin-top: 20px;
-  padding: 14px 28px;
-  border: none;
-  border-radius: 14px;
-  background: #4f8cff;
-  color: white;
-  cursor: pointer;
-  font-size: 16px;
-  transition: 0.3s;
-}
-
-.hero button:hover {
-  transform: scale(1.05);
-}
-
-/* UPLOAD SECTION */
-
-.upload-section {
-  width: 60%;
-  margin: auto;
-  background: rgba(255,255,255,0.05);
-  padding: 30px;
-  border-radius: 25px;
-  backdrop-filter: blur(15px);
-}
-
-.upload-section input,
-.upload-section textarea {
-
-  width: 100%;
-
-  margin-top: 15px;
-
-  padding: 14px;
-
-  border-radius: 12px;
-
-  border: none;
-
-  box-sizing: border-box;
-
-  background: rgba(255,255,255,0.08);
-
-  color: white;
-}
-
-.upload-section textarea {
-  height: 120px;
-}
-
-.upload-section button {
-
-  margin-top: 20px;
-
-  padding: 14px 24px;
-
-  border: none;
-
-  border-radius: 12px;
-
-  background: #4f8cff;
-
-  color: white;
-
-  cursor: pointer;
-
-  transition: 0.3s;
-}
-
-.upload-section button:hover {
-  transform: scale(1.05);
-}
-
-
-#timeline {
-
-  display: flex;
-
-  flex-wrap: wrap;
-
-  justify-content: center;
-
-  padding: 50px;
-}
-
-/* MEMORY CARD */
-
-.card {
-
-  width: 300px;
-
-  margin: 20px;
-
-  border-radius: 24px;
-
-  overflow: hidden;
-
-  background: rgba(255,255,255,0.06);
-
-  backdrop-filter: blur(15px);
-
-  transition: 0.4s;
-
-  cursor: pointer;
-
-  opacity: 0;
-
-  transform: translateY(50px);
-
-  animation: fadeUp 0.8s forwards;
-}
-
-.card:hover {
-
-  transform: scale(1.04);
-}
-
-.card img {
-
-  width: 100%;
-
-  height: 230px;
-
-  object-fit: cover;
-}
-
-.card h3 {
-  margin: 15px;
-}
-
-.card p {
-  margin: 15px;
-  color: #cccccc;
-}
-
-.card small {
-  margin: 15px;
-  display: block;
-  color: #888;
-}
-
-
-@keyframes fadeUp {
-
-  to {
-
-    opacity: 1;
-
-    transform: translateY(0);
-  }
-}
-
-/* MODAL */
 
 .modal {
-
   display: none;
-
   position: fixed;
-
   z-index: 999;
-
   left: 0;
-
   top: 0;
-
   width: 100%;
-
   height: 100%;
-
-  background: rgba(0,0,0,0.8);
-
-  backdrop-filter: blur(10px);
+  background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(12px);
 }
 
 .modal-content {
-
   width: 70%;
-
-  margin: 40px auto;
-
+  margin: 30px auto;
   background: #10172b;
-
-  border-radius: 25px;
-
+  border-radius: 24px;
   overflow: hidden;
-
   padding-bottom: 20px;
-
-  animation: zoomIn 0.4s;
 }
 
 .modal-content img {
-
   width: 100%;
-
   max-height: 500px;
-
   object-fit: cover;
 }
 
-.modal-content h2 {
-
+.modal-content h2,
+.modal-content p,
+.modal-content small,
+.modal-content audio {
   margin: 20px;
-}
-
-.modal-content p {
-
-  margin: 20px;
-
-  color: #ccc;
-}
-
-.modal-content small {
-
-  margin: 20px;
-
-  display: block;
-
-  color: #777;
 }
 
 .close {
-
   position: absolute;
-
-  right: 50px;
-
-  top: 30px;
-
+  right: 40px;
+  top: 20px;
   font-size: 40px;
-
   cursor: pointer;
-
-  color: white;
 }
 
-
-@keyframes zoomIn {
-
+@keyframes fadeUp {
   from {
-
-    transform: scale(0.7);
-
     opacity: 0;
+    transform: translateY(40px);
   }
 
   to {
-
-    transform: scale(1);
-
     opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media(max-width: 900px) {
+
+  .upload-section {
+    width: 90%;
+  }
+
+  .modal-content {
+    width: 90%;
+  }
+
+  .hero h1 {
+    font-size: 50px;
   }
 }
