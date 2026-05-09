@@ -1,46 +1,4 @@
-<!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LifeFrame</title>
-
-  <link rel="stylesheet" href="style.css">
-</head>
-
-<body>
-
-  <!-- Animated Background -->
-  <div class="bg"></div>
-
-  <!-- Floating particles -->
-  <div class="particles"></div>
-
-  <!-- Hero Section -->
-  <header class="hero">
-
-    <h1>🧠 LifeFrame</h1>
-
-    <p>
-      Your memories turned into a living museum
-    </p>
-
-    <button onclick="enterMuseum()">
-      Enter Experience
-    </button>
-
-  </header>
-
-  <!-- Upload Section -->
-  <section class="upload-section">
-
-    <h2>Add a Memory</h2>
-
-    <input
-      type="text"
-      id="title"
-      placeholder="Memory title"
     >
 
     <textarea
@@ -49,8 +7,24 @@
     ></textarea>
 
     <input
+      type="text"
+      id="location"
+      placeholder="Location (ex: Casablanca Beach)"
+    >
+
+    <input
       type="file"
       id="imageFile"
+    >
+
+    <label class="voice-label">
+      🎙 Voice Memory
+    </label>
+
+    <input
+      type="file"
+      id="voiceFile"
+      accept="audio/*"
     >
 
     <button onclick="addMemory()">
@@ -59,10 +33,12 @@
 
   </section>
 
-  <!-- Timeline -->
+  <section class="explore-title">
+    <h2>🌍 Public Memory Feed</h2>
+  </section>
+
   <section id="timeline"></section>
 
-  <!-- MEMORY MODAL -->
   <div id="memoryModal" class="modal">
 
     <div class="modal-content">
@@ -80,7 +56,14 @@
 
       <p id="modalDescription"></p>
 
+      <audio
+        id="modalVoice"
+        controls
+      ></audio>
+
       <small id="modalDate"></small>
+
+      <small id="modalLocation"></small>
 
     </div>
 
