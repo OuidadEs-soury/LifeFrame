@@ -6,87 +6,101 @@ body {
   overflow-x: hidden;
 }
 
-/* background glow */
 .bg {
   position: fixed;
   width: 100%;
   height: 100%;
-  background: radial-gradient(circle at top, #1b2a4a, #0b0f1a);
+  background:
+    radial-gradient(circle at top, #1b2a4a, #0b0f1a);
   z-index: -1;
 }
 
-/* Hero section */
 .hero {
   text-align: center;
   padding: 80px 20px;
 }
 
 .hero h1 {
-  font-size: 50px;
+  font-size: 60px;
+  margin-bottom: 10px;
+}
+
+.hero p {
+  color: #ccc;
 }
 
 .hero button {
-  padding: 12px 20px;
+  padding: 12px 25px;
   border: none;
   background: #4f8cff;
   color: white;
   border-radius: 10px;
   cursor: pointer;
+  margin-top: 20px;
+  font-size: 16px;
 }
 
-/* Upload box */
 .upload-section {
-  background: rgba(255,255,255,0.05);
-  padding: 20px;
-  margin: 20px auto;
   width: 60%;
-  border-radius: 15px;
-  backdrop-filter: blur(10px);
+  margin: auto;
+  background: rgba(255,255,255,0.05);
+  padding: 25px;
+  border-radius: 20px;
+  backdrop-filter: blur(12px);
 }
 
 .upload-section input,
 .upload-section textarea {
   width: 100%;
-  margin: 10px 0;
-  padding: 10px;
-  border-radius: 8px;
+  margin-top: 15px;
+  padding: 12px;
+  border-radius: 10px;
   border: none;
+  box-sizing: border-box;
 }
 
-/* Timeline */
+.upload-section button {
+  margin-top: 20px;
+  padding: 12px 20px;
+  background: #4f8cff;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+}
+
 #timeline {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  padding: 30px;
+  padding: 40px;
 }
 
-/* Memory card */
 .card {
-  width: 250px;
-  margin: 15px;
-  background: rgba(255,255,255,0.07);
-  border-radius: 15px;
+  width: 280px;
+  margin: 20px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 20px;
   overflow: hidden;
   backdrop-filter: blur(10px);
   transition: 0.3s;
 }
 
 .card:hover {
-  transform: scale(1.05);
+  transform: scale(1.04);
 }
 
 .card img {
   width: 100%;
-  height: 150px;
+  height: 220px;
   object-fit: cover;
 }
 
 .card h3 {
-  margin: 10px;
+  margin: 15px;
 }
 
 .card p {
-  margin: 10px;
-  font-size: 14px;
+  margin: 15px;
+  color: #ccc;
 }
