@@ -1,34 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LifeFrame</title>
+
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
+  <!-- Animated Background -->
   <div class="bg"></div>
 
+  <!-- Floating particles -->
+  <div class="particles"></div>
+
+  <!-- Hero Section -->
   <header class="hero">
+
     <h1>🧠 LifeFrame</h1>
-    <p>Your memories turned into a living museum</p>
-    <button onclick="enterMuseum()">Enter Experience</button>
+
+    <p>
+      Your memories turned into a living museum
+    </p>
+
+    <button onclick="enterMuseum()">
+      Enter Experience
+    </button>
+
   </header>
 
+  <!-- Upload Section -->
   <section class="upload-section">
 
     <h2>Add a Memory</h2>
 
-    <input type="text" id="title" placeholder="Memory title">
+    <input
+      type="text"
+      id="title"
+      placeholder="Memory title"
+    >
 
     <textarea
       id="description"
       placeholder="Write your memory..."
     ></textarea>
 
-    <!-- NEW IMAGE FILE INPUT -->
-    <input type="file" id="imageFile">
+    <input
+      type="file"
+      id="imageFile"
+    >
 
     <button onclick="addMemory()">
       Save Memory
@@ -36,7 +59,32 @@
 
   </section>
 
+  <!-- Timeline -->
   <section id="timeline"></section>
+
+  <!-- MEMORY MODAL -->
+  <div id="memoryModal" class="modal">
+
+    <div class="modal-content">
+
+      <span
+        class="close"
+        onclick="closeModal()"
+      >
+        &times;
+      </span>
+
+      <img id="modalImage">
+
+      <h2 id="modalTitle"></h2>
+
+      <p id="modalDescription"></p>
+
+      <small id="modalDate"></small>
+
+    </div>
+
+  </div>
 
   <script src="app.js"></script>
 

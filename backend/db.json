@@ -1,8 +1,26 @@
 [
   {
-    "id": 1,
-    "title": "First Memory",
-    "description": "This is where LifeFrame begins.",
-    "image": "https://images.unsplash.com/photo-1520975922284-3d5b0f0b6a1c"
+    "id": 1778363442409,
+    "title": "First beach day with my students",
+    "description": "I realized that i still love the beach",
+    "image": "/uploads/1778363442403-photo_2026-05-09_22-24-32.jpg"
+  },
+  {
+    "id": 1778363555844,
+    "title": "My birthday ",
+    "description": "The best birthday i ever had in my life thanks to my sister",
+    "image": "/uploads/1778363555841-photo_2026-05-09_22-24-29.jpg"
+  },
+  {
+    "id": 1778363694493,
+    "title": "going out togheter",
+    "description": "We had so much fun that day ",
+    "image": "/uploads/1778363694490-ana whia.jpg"
+  },
+  {
+    "id": 1778363809531,
+    "title": "outfit of the day",
+    "description": "we dressed and went to have some fun",
+    "image": "/uploads/1778363809527-me and her.jpg"
   }
 ]
