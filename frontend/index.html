@@ -1,4 +1,72 @@
+<!DOCTYPE html>
 <html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>LifeFrame</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+  <!-- MUSIC -->
+  <audio id="bgMusic" loop>
+
+    <source
+      src="../assets/music/ambient.mp3"
+      type="audio/mpeg"
+    >
+
+  </audio>
+
+  <!-- BACKGROUND -->
+  <div class="bg"></div>
+
+  <!-- PARTICLES -->
+  <div class="particles"></div>
+
+  <!-- HERO -->
+  <header class="hero">
+
+    <h1>🧠 LifeFrame</h1>
+
+    <p>
+      Your memories turned into a living museum
+    </p>
+
+    <div class="hero-buttons">
+
+      <button onclick="enterMuseum()">
+        Enter Experience
+      </button>
+
+      <button onclick="toggleMusic()">
+        🎧 Toggle Music
+      </button>
+
+    </div>
+
+  </header>
+
+  <!-- UPLOAD -->
+  <section class="upload-section">
+
+    <h2>Add a Memory</h2>
+
+    <input
+      type="text"
+      id="title"
+      placeholder="Memory title"
     >
 
     <textarea
@@ -9,7 +77,7 @@
     <input
       type="text"
       id="location"
-      placeholder="Location (ex: Casablanca Beach)"
+      placeholder="Location (example: Casablanca Beach)"
     >
 
     <input
@@ -33,13 +101,21 @@
 
   </section>
 
+  <!-- TITLE -->
   <section class="explore-title">
+
     <h2>🌍 Public Memory Feed</h2>
+
   </section>
 
+  <!-- TIMELINE -->
   <section id="timeline"></section>
 
-  <div id="memoryModal" class="modal">
+  <!-- MODAL -->
+  <div
+    id="memoryModal"
+    class="modal"
+  >
 
     <div class="modal-content">
 
@@ -69,6 +145,7 @@
 
   </div>
 
+  <!-- JS -->
   <script src="app.js"></script>
 
 </body>

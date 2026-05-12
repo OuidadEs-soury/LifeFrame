@@ -11,10 +11,10 @@ app.use(express.json());
 
 
 
-app.use("/uploads",
+app.use(
+  "/uploads",
   express.static("../uploads")
 );
-
 
 
 const storage = multer.diskStorage({
@@ -22,7 +22,6 @@ const storage = multer.diskStorage({
   destination: (req, file, cb) => {
 
     cb(null, "../uploads");
-
   },
 
   filename: (req, file, cb) => {
@@ -32,35 +31,52 @@ const storage = multer.diskStorage({
       Date.now() + "-" + file.originalname
     );
   }
-
 });
 
 const upload = multer({ storage });
 
 const DB_FILE = "./db.json";
 
-
+/* ---------------------- */
+/* GET MEMORIES */
+/* ---------------------- */
 
 app.get("/memories", (req, res) => {
 
-  const data =
-    JSON.parse(fs.readFileSync(DB_FILE));
+  const data = JSON.parse(
+    fs.readFileSync(DB_FILE)
+  );
 
   res.json(data);
-
 });
 
-/* ------------------ */
-/* ADD MEMORY */
-/* ------------------ */
+
 
 app.post(
+
   "/memories",
-  upload.single("image"),
+
+  upload.fields([
+
+    { name: "image", maxCount: 1 },
+
+    { name: "voice", maxCount: 1 }
+
+  ]),
+
   (req, res) => {
 
-    const data =
-      JSON.parse(fs.readFileSync(DB_FILE));
+    const data = JSON.parse(
+      fs.readFileSync(DB_FILE)
+    );
+
+    const imageFile =
+      req.files.image[0];
+
+    const voiceFile =
+      req.files.voice
+        ? req.files.voice[0]
+        : null;
 
     const newMemory = {
 
@@ -70,24 +86,33 @@ app.post(
 
       description: req.body.description,
 
-      image: `/uploads/${req.file.filename}`
+      location: req.body.location,
 
+      likes: 0,
+
+      image:
+        `/uploads/${imageFile.filename}`,
+
+      voice: voiceFile
+        ? `/uploads/${voiceFile.filename}`
+        : null
     };
 
     data.push(newMemory);
 
     fs.writeFileSync(
+
       DB_FILE,
+
       JSON.stringify(data, null, 2)
     );
 
     res.json({
+
       message: "Memory uploaded"
     });
-
   }
 );
-
 
 
 app.listen(5000, () => {
@@ -95,5 +120,4 @@ app.listen(5000, () => {
   console.log(
     "🚀 LifeFrame server running on port 5000"
   );
-
 });
