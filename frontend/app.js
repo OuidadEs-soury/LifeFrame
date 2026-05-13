@@ -1,19 +1,45 @@
 const API = "http://localhost:5000";
 
+/* -------------------- */
+/* MAP */
+/* -------------------- */
+
+const map = L.map("map").setView(
+  [20, 0],
+  2
+);
+
+L.tileLayer(
+  "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+  {
+    attribution: "© OpenStreetMap"
+  }
+).addTo(map);
+
+/* -------------------- */
+/* LOAD MEMORIES */
+/* -------------------- */
+
 async function loadMemories() {
 
-  const res = await fetch(`${API}/memories`);
+  const res =
+    await fetch(`${API}/memories`);
 
-  const memories = await res.json();
+  const memories =
+    await res.json();
 
-  const timeline = document.getElementById("timeline");
+  const timeline =
+    document.getElementById("timeline");
 
   timeline.innerHTML = "";
 
   memories.reverse().forEach(mem => {
 
-    const date = new Date(mem.id)
+    const date =
+      new Date(mem.id)
       .toLocaleDateString();
+
+    /* CARD */
 
     timeline.innerHTML += `
 
@@ -53,8 +79,32 @@ async function loadMemories() {
 
       </div>
     `;
+
+    /* MAP PIN */
+
+    if (mem.latitude && mem.longitude) {
+
+      L.marker([
+        mem.latitude,
+        mem.longitude
+      ])
+
+      .addTo(map)
+
+      .bindPopup(`
+
+        <h3>${mem.title}</h3>
+
+        <p>${mem.location}</p>
+
+      `);
+    }
   });
 }
+
+/* -------------------- */
+/* ADD MEMORY */
+/* -------------------- */
 
 async function addMemory() {
 
@@ -67,6 +117,12 @@ async function addMemory() {
   const location =
     document.getElementById("location").value;
 
+  const latitude =
+    document.getElementById("latitude").value;
+
+  const longitude =
+    document.getElementById("longitude").value;
+
   const imageFile =
     document.getElementById("imageFile").files[0];
 
@@ -76,11 +132,19 @@ async function addMemory() {
   const formData = new FormData();
 
   formData.append("title", title);
+
   formData.append("description", description);
+
   formData.append("location", location);
+
+  formData.append("latitude", latitude);
+
+  formData.append("longitude", longitude);
+
   formData.append("image", imageFile);
 
   if (voiceFile) {
+
     formData.append("voice", voiceFile);
   }
 
@@ -92,13 +156,11 @@ async function addMemory() {
   });
 
   loadMemories();
-
-  document.getElementById("title").value = "";
-  document.getElementById("description").value = "";
-  document.getElementById("location").value = "";
-  document.getElementById("imageFile").value = "";
-  document.getElementById("voiceFile").value = "";
 }
+
+/* -------------------- */
+/* MODAL */
+/* -------------------- */
 
 function openModal(
   image,
@@ -109,32 +171,41 @@ function openModal(
   voice
 ) {
 
-  document.getElementById("memoryModal")
-    .style.display = "block";
+  document.getElementById(
+    "memoryModal"
+  ).style.display = "block";
 
-  document.getElementById("modalImage")
-    .src = image;
+  document.getElementById(
+    "modalImage"
+  ).src = image;
 
-  document.getElementById("modalTitle")
-    .innerText = title;
+  document.getElementById(
+    "modalTitle"
+  ).innerText = title;
 
-  document.getElementById("modalDescription")
-    .innerText = description;
+  document.getElementById(
+    "modalDescription"
+  ).innerText = description;
 
-  document.getElementById("modalDate")
-    .innerText = date;
+  document.getElementById(
+    "modalDate"
+  ).innerText = date;
 
-  document.getElementById("modalLocation")
-    .innerText = `📍 ${location}`;
+  document.getElementById(
+    "modalLocation"
+  ).innerText = `📍 ${location}`;
 
   const voicePlayer =
-    document.getElementById("modalVoice");
+    document.getElementById(
+      "modalVoice"
+    );
 
   if (voice) {
 
     voicePlayer.style.display = "block";
 
-    voicePlayer.src = `${API}${voice}`;
+    voicePlayer.src =
+      `${API}${voice}`;
 
   } else {
 
@@ -142,26 +213,41 @@ function openModal(
   }
 }
 
+/* -------------------- */
+/* CLOSE MODAL */
+/* -------------------- */
+
 function closeModal() {
 
-  document.getElementById("memoryModal")
-    .style.display = "none";
+  document.getElementById(
+    "memoryModal"
+  ).style.display = "none";
 }
+
+/* -------------------- */
+/* HERO BUTTON */
+/* -------------------- */
 
 function enterMuseum() {
 
   window.scrollTo({
 
-    top: 500,
+    top: 700,
 
     behavior: "smooth"
   });
 }
 
+/* -------------------- */
+/* MUSIC */
+/* -------------------- */
+
 function toggleMusic() {
 
   const music =
-    document.getElementById("bgMusic");
+    document.getElementById(
+      "bgMusic"
+    );
 
   if (music.paused) {
 
@@ -172,5 +258,9 @@ function toggleMusic() {
     music.pause();
   }
 }
+
+/* -------------------- */
+/* START */
+/* -------------------- */
 
 loadMemories();
