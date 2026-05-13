@@ -324,3 +324,42 @@ button:hover {
     font-size: 50px;
   }
 }
+/* MAP SECTION */
+
+.map-title {
+  text-align: center;
+  margin-top: 70px;
+}
+
+#map {
+
+  width: 85%;
+
+  height: 500px;
+
+  margin: 40px auto;
+
+  border-radius: 25px;
+
+  overflow: hidden;
+
+  border: 2px solid rgba(255,255,255,0.1);
+
+  box-shadow:
+    0 0 40px rgba(0,0,0,0.5);
+}
+
+/* LEAFLET POPUP */
+
+.leaflet-popup-content-wrapper {
+
+  background: #10172b;
+
+  color: white;
+
+  border-radius: 15px;
+}
+
+.leaflet-popup-tip {
+  background: #10172b;
+}

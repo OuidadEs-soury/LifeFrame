@@ -15,6 +15,12 @@
   <!-- CSS -->
   <link rel="stylesheet" href="style.css">
 
+  <!-- LEAFLET MAP -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet/dist/leaflet.css"
+  >
+
 </head>
 
 <body>
@@ -32,7 +38,6 @@
   <!-- BACKGROUND -->
   <div class="bg"></div>
 
-  <!-- PARTICLES -->
   <div class="particles"></div>
 
   <!-- HERO -->
@@ -80,6 +85,20 @@
       placeholder="Location (example: Casablanca Beach)"
     >
 
+    <!-- LATITUDE -->
+    <input
+      type="number"
+      id="latitude"
+      placeholder="Latitude (example: 33.5731)"
+    >
+
+    <!-- LONGITUDE -->
+    <input
+      type="number"
+      id="longitude"
+      placeholder="Longitude (example: -7.5898)"
+    >
+
     <input
       type="file"
       id="imageFile"
@@ -101,14 +120,23 @@
 
   </section>
 
-  <!-- TITLE -->
-  <section class="explore-title">
+  <!-- MAP TITLE -->
+  <section class="map-title">
 
-    <h2>🌍 Public Memory Feed</h2>
+    <h2>🌍 Memory World Map</h2>
 
   </section>
 
-  <!-- TIMELINE -->
+  <!-- MAP -->
+  <div id="map"></div>
+
+  <!-- FEED -->
+  <section class="explore-title">
+
+    <h2>🌌 Public Memory Feed</h2>
+
+  </section>
+
   <section id="timeline"></section>
 
   <!-- MODAL -->
@@ -144,6 +172,9 @@
     </div>
 
   </div>
+
+  <!-- LEAFLET -->
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
   <!-- JS -->
   <script src="app.js"></script>
