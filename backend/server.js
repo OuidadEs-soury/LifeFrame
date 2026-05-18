@@ -14,9 +14,7 @@ app.use(cors());
 
 app.use(express.json());
 
-/* -------------------- */
-/* UPLOADS FOLDER */
-/* -------------------- */
+/* UPLOADS */
 
 app.use(
   "/uploads",
@@ -25,9 +23,7 @@ app.use(
   )
 );
 
-/* -------------------- */
 /* STORAGE */
-/* -------------------- */
 
 const storage = multer.diskStorage({
 
@@ -49,16 +45,12 @@ const upload = multer({
   storage
 });
 
-/* -------------------- */
 /* DATABASE */
-/* -------------------- */
 
 const dbPath =
   path.join(__dirname, "db.json");
 
-/* -------------------- */
 /* GET MEMORIES */
-/* -------------------- */
 
 app.get("/memories", (req, res) => {
 
@@ -68,9 +60,7 @@ app.get("/memories", (req, res) => {
   res.json(JSON.parse(data));
 });
 
-/* -------------------- */
-/* ADD MEMORY */
-/* -------------------- */
+/* SAVE MEMORY */
 
 app.post(
 
@@ -91,12 +81,12 @@ app.post(
     const image =
       req.files["image"]
       ? req.files["image"][0].filename
-      : null;
+      : "";
 
     const voice =
       req.files["voice"]
       ? req.files["voice"][0].filename
-      : null;
+      : "";
 
     const newMemory = {
 
@@ -110,30 +100,26 @@ app.post(
       location:
         req.body.location,
 
-      latitude:
-        req.body.latitude,
-
-      longitude:
-        req.body.longitude,
-
       image:
-        image
-        ? `/uploads/${image}`
-        : "",
+        `/uploads/${image}`,
 
       voice:
         voice
         ? `/uploads/${voice}`
-        : "",
-
-      likes: 0
+        : ""
     };
 
     memories.push(newMemory);
 
     fs.writeFileSync(
+
       dbPath,
-      JSON.stringify(memories, null, 2)
+
+      JSON.stringify(
+        memories,
+        null,
+        2
+      )
     );
 
     res.json({
@@ -142,9 +128,7 @@ app.post(
   }
 );
 
-/* -------------------- */
-/* START SERVER */
-/* -------------------- */
+/* START */
 
 app.listen(5000, () => {
 
