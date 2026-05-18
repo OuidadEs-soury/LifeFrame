@@ -12,16 +12,18 @@
 
   <title>LifeFrame</title>
 
-  <link rel="stylesheet" href="style.css">
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
 
 </head>
 
 <body>
 
   <!-- BACKGROUND -->
-  <div class="bg"></div>
 
-  <div class="particles"></div>
+  <div class="background-glow"></div>
 
   <!-- HERO -->
 
@@ -30,10 +32,10 @@
     <h1>🧠 LifeFrame</h1>
 
     <p>
-      Your memories turned into a living museum
+      Your memories turned into a cinematic universe
     </p>
 
-    <button onclick="scrollFeed()">
+    <button onclick="scrollTimeline()">
       Enter Experience
     </button>
 
@@ -41,7 +43,7 @@
 
   <!-- ADD MEMORY -->
 
-  <section class="upload-section">
+  <section class="upload-box">
 
     <h2>Add a Memory</h2>
 
@@ -89,44 +91,50 @@
 
   </section>
 
-  <!-- FEED -->
+  <!-- TIMELINE -->
 
-  <section class="feed-title">
+  <section class="timeline-section">
 
-    <h2>🌌 Memory Reel</h2>
+    <h2 class="timeline-title">
+      🌌 Memory Timeline
+    </h2>
+
+    <div id="timeline"></div>
 
   </section>
 
-  <section id="timeline"></section>
-
-  <!-- MODAL -->
+  <!-- CINEMA MODAL -->
 
   <div
-    id="memoryModal"
-    class="modal"
+    id="cinemaModal"
+    class="cinema-modal"
   >
 
-    <div class="modal-content">
+    <span
+      class="close-btn"
+      onclick="closeCinema()"
+    >
+      ✕
+    </span>
 
-      <span
-        class="close"
-        onclick="closeModal()"
-      >
-        &times;
-      </span>
+    <div class="cinema-content">
 
-      <img id="modalImage">
+      <img id="cinemaImage">
 
-      <h2 id="modalTitle"></h2>
+      <div class="cinema-text">
 
-      <p id="modalDescription"></p>
+        <h1 id="cinemaTitle"></h1>
 
-      <small id="modalLocation"></small>
+        <p id="cinemaDescription"></p>
 
-      <audio
-        id="modalVoice"
-        controls
-      ></audio>
+        <small id="cinemaLocation"></small>
+
+        <audio
+          id="cinemaVoice"
+          controls
+        ></audio>
+
+      </div>
 
     </div>
 
