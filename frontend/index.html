@@ -12,28 +12,11 @@
 
   <title>LifeFrame</title>
 
-  <!-- CSS -->
   <link rel="stylesheet" href="style.css">
-
-  <!-- LEAFLET MAP -->
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/leaflet/dist/leaflet.css"
-  >
 
 </head>
 
 <body>
-
-  <!-- MUSIC -->
-  <audio id="bgMusic" loop>
-
-    <source
-      src="../assets/music/ambient.mp3"
-      type="audio/mpeg"
-    >
-
-  </audio>
 
   <!-- BACKGROUND -->
   <div class="bg"></div>
@@ -41,6 +24,7 @@
   <div class="particles"></div>
 
   <!-- HERO -->
+
   <header class="hero">
 
     <h1>🧠 LifeFrame</h1>
@@ -49,21 +33,14 @@
       Your memories turned into a living museum
     </p>
 
-    <div class="hero-buttons">
-
-      <button onclick="enterMuseum()">
-        Enter Experience
-      </button>
-
-      <button onclick="toggleMusic()">
-        🎧 Toggle Music
-      </button>
-
-    </div>
+    <button onclick="scrollFeed()">
+      Enter Experience
+    </button>
 
   </header>
 
-  <!-- UPLOAD -->
+  <!-- ADD MEMORY -->
+
   <section class="upload-section">
 
     <h2>Add a Memory</h2>
@@ -82,30 +59,22 @@
     <input
       type="text"
       id="location"
-      placeholder="Location (example: Casablanca Beach)"
+      placeholder="Location"
     >
 
-    <!-- LATITUDE -->
-    <input
-      type="number"
-      id="latitude"
-      placeholder="Latitude (example: 33.5731)"
-    >
-
-    <!-- LONGITUDE -->
-    <input
-      type="number"
-      id="longitude"
-      placeholder="Longitude (example: -7.5898)"
-    >
+    <!-- IMAGE -->
 
     <input
       type="file"
       id="imageFile"
     >
 
+    <!-- VOICE -->
+
     <label class="voice-label">
+
       🎙 Voice Memory
+
     </label>
 
     <input
@@ -120,26 +89,18 @@
 
   </section>
 
-  <!-- MAP TITLE -->
-  <section class="map-title">
-
-    <h2>🌍 Memory World Map</h2>
-
-  </section>
-
-  <!-- MAP -->
-  <div id="map"></div>
-
   <!-- FEED -->
-  <section class="explore-title">
 
-    <h2>🌌 Public Memory Feed</h2>
+  <section class="feed-title">
+
+    <h2>🌌 Memory Reel</h2>
 
   </section>
 
   <section id="timeline"></section>
 
   <!-- MODAL -->
+
   <div
     id="memoryModal"
     class="modal"
@@ -160,23 +121,17 @@
 
       <p id="modalDescription"></p>
 
+      <small id="modalLocation"></small>
+
       <audio
         id="modalVoice"
         controls
       ></audio>
 
-      <small id="modalDate"></small>
-
-      <small id="modalLocation"></small>
-
     </div>
 
   </div>
 
-  <!-- LEAFLET -->
-  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-
-  <!-- JS -->
   <script src="app.js"></script>
 
 </body>

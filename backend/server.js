@@ -1,7 +1,12 @@
 const express = require("express");
+
 const cors = require("cors");
-const fs = require("fs");
+
 const multer = require("multer");
+
+const fs = require("fs");
+
+const path = require("path");
 
 const app = express();
 
@@ -9,13 +14,20 @@ app.use(cors());
 
 app.use(express.json());
 
-
+/* -------------------- */
+/* UPLOADS FOLDER */
+/* -------------------- */
 
 app.use(
   "/uploads",
-  express.static("../uploads")
+  express.static(
+    path.join(__dirname, "../uploads")
+  )
 );
 
+/* -------------------- */
+/* STORAGE */
+/* -------------------- */
 
 const storage = multer.diskStorage({
 
@@ -33,50 +45,58 @@ const storage = multer.diskStorage({
   }
 });
 
-const upload = multer({ storage });
+const upload = multer({
+  storage
+});
 
-const DB_FILE = "./db.json";
+/* -------------------- */
+/* DATABASE */
+/* -------------------- */
 
-/* ---------------------- */
+const dbPath =
+  path.join(__dirname, "db.json");
+
+/* -------------------- */
 /* GET MEMORIES */
-/* ---------------------- */
+/* -------------------- */
 
 app.get("/memories", (req, res) => {
 
-  const data = JSON.parse(
-    fs.readFileSync(DB_FILE)
-  );
+  const data =
+    fs.readFileSync(dbPath);
 
-  res.json(data);
+  res.json(JSON.parse(data));
 });
 
-
+/* -------------------- */
+/* ADD MEMORY */
+/* -------------------- */
 
 app.post(
 
   "/memories",
 
   upload.fields([
-
     { name: "image", maxCount: 1 },
-
     { name: "voice", maxCount: 1 }
-
   ]),
 
   (req, res) => {
 
-    const data = JSON.parse(
-      fs.readFileSync(DB_FILE)
-    );
+    const memories =
+      JSON.parse(
+        fs.readFileSync(dbPath)
+      );
 
-    const imageFile =
-      req.files.image[0];
+    const image =
+      req.files["image"]
+      ? req.files["image"][0].filename
+      : null;
 
-    const voiceFile =
-      req.files.voice
-        ? req.files.voice[0]
-        : null;
+    const voice =
+      req.files["voice"]
+      ? req.files["voice"][0].filename
+      : null;
 
     const newMemory = {
 
@@ -84,40 +104,51 @@ app.post(
 
       title: req.body.title,
 
-      description: req.body.description,
+      description:
+        req.body.description,
 
-      location: req.body.location,
+      location:
+        req.body.location,
 
-      likes: 0,
+      latitude:
+        req.body.latitude,
+
+      longitude:
+        req.body.longitude,
 
       image:
-        `/uploads/${imageFile.filename}`,
+        image
+        ? `/uploads/${image}`
+        : "",
 
-      voice: voiceFile
-        ? `/uploads/${voiceFile.filename}`
-        : null
+      voice:
+        voice
+        ? `/uploads/${voice}`
+        : "",
+
+      likes: 0
     };
 
-    data.push(newMemory);
+    memories.push(newMemory);
 
     fs.writeFileSync(
-
-      DB_FILE,
-
-      JSON.stringify(data, null, 2)
+      dbPath,
+      JSON.stringify(memories, null, 2)
     );
 
     res.json({
-
-      message: "Memory uploaded"
+      success: true
     });
   }
 );
 
+/* -------------------- */
+/* START SERVER */
+/* -------------------- */
 
 app.listen(5000, () => {
 
   console.log(
-    "🚀 LifeFrame server running on port 5000"
+    "🧠 LifeFrame server running on port 5000"
   );
 });
