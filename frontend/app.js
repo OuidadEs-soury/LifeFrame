@@ -1,24 +1,6 @@
 const API = "http://localhost:5000";
 
-/* -------------------- */
-/* MAP */
-/* -------------------- */
-
-const map = L.map("map").setView(
-  [20, 0],
-  2
-);
-
-L.tileLayer(
-  "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-  {
-    attribution: "© OpenStreetMap"
-  }
-).addTo(map);
-
-/* -------------------- */
 /* LOAD MEMORIES */
-/* -------------------- */
 
 async function loadMemories() {
 
@@ -35,12 +17,6 @@ async function loadMemories() {
 
   memories.reverse().forEach(mem => {
 
-    const date =
-      new Date(mem.id)
-      .toLocaleDateString();
-
-    /* CARD */
-
     timeline.innerHTML += `
 
       <div
@@ -49,7 +25,6 @@ async function loadMemories() {
           "${API}${mem.image}",
           "${mem.title}",
           "${mem.description}",
-          "${date}",
           "${mem.location}",
           "${mem.voice || ""}"
         )'
@@ -59,52 +34,22 @@ async function loadMemories() {
 
         <div class="card-content">
 
-          <h3>${mem.title}</h3>
+          <h2>${mem.title}</h2>
 
           <p>${mem.description}</p>
 
-          <small>📍 ${mem.location}</small>
-
-          <div class="actions">
-
-            <button class="like-btn">
-              ❤️ ${mem.likes || 0}
-            </button>
-
-            <small>${date}</small>
-
-          </div>
+          <small>
+            📍 ${mem.location}
+          </small>
 
         </div>
 
       </div>
     `;
-
-    /* MAP PIN */
-
-    if (mem.latitude && mem.longitude) {
-
-      L.marker([
-        mem.latitude,
-        mem.longitude
-      ])
-
-      .addTo(map)
-
-      .bindPopup(`
-
-        <h3>${mem.title}</h3>
-
-        <p>${mem.location}</p>
-
-      `);
-    }
   });
 }
 
-/* -------------------- */
 /* ADD MEMORY */
-/* -------------------- */
 
 async function addMemory() {
 
@@ -116,12 +61,6 @@ async function addMemory() {
 
   const location =
     document.getElementById("location").value;
-
-  const latitude =
-    document.getElementById("latitude").value;
-
-  const longitude =
-    document.getElementById("longitude").value;
 
   const imageFile =
     document.getElementById("imageFile").files[0];
@@ -136,10 +75,6 @@ async function addMemory() {
   formData.append("description", description);
 
   formData.append("location", location);
-
-  formData.append("latitude", latitude);
-
-  formData.append("longitude", longitude);
 
   formData.append("image", imageFile);
 
@@ -158,15 +93,12 @@ async function addMemory() {
   loadMemories();
 }
 
-/* -------------------- */
 /* MODAL */
-/* -------------------- */
 
 function openModal(
   image,
   title,
   description,
-  date,
   location,
   voice
 ) {
@@ -188,34 +120,27 @@ function openModal(
   ).innerText = description;
 
   document.getElementById(
-    "modalDate"
-  ).innerText = date;
-
-  document.getElementById(
     "modalLocation"
   ).innerText = `📍 ${location}`;
 
-  const voicePlayer =
+  const player =
     document.getElementById(
       "modalVoice"
     );
 
   if (voice) {
 
-    voicePlayer.style.display = "block";
+    player.src = `${API}${voice}`;
 
-    voicePlayer.src =
-      `${API}${voice}`;
+    player.style.display = "block";
 
   } else {
 
-    voicePlayer.style.display = "none";
+    player.style.display = "none";
   }
 }
 
-/* -------------------- */
-/* CLOSE MODAL */
-/* -------------------- */
+/* CLOSE */
 
 function closeModal() {
 
@@ -224,11 +149,9 @@ function closeModal() {
   ).style.display = "none";
 }
 
-/* -------------------- */
-/* HERO BUTTON */
-/* -------------------- */
+/* SCROLL */
 
-function enterMuseum() {
+function scrollFeed() {
 
   window.scrollTo({
 
@@ -238,29 +161,6 @@ function enterMuseum() {
   });
 }
 
-/* -------------------- */
-/* MUSIC */
-/* -------------------- */
-
-function toggleMusic() {
-
-  const music =
-    document.getElementById(
-      "bgMusic"
-    );
-
-  if (music.paused) {
-
-    music.play();
-
-  } else {
-
-    music.pause();
-  }
-}
-
-/* -------------------- */
 /* START */
-/* -------------------- */
 
 loadMemories();
